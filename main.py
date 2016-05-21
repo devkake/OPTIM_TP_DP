@@ -74,8 +74,51 @@ if __name__ == '__main__':
 					V[t, x] = vu
 					pi[t, x] = u
 	
-	print(V)
-	print(optimal(V))
-	print(pi)
+	# print(V)
+	# print(optimal(V))
+	# print(pi)
+
+	opt = -V[0]
+	plt.plot(opt)
+	plt.title("Initial Stock vs. Optimal Value (=V(0))")
+	plt.show()
 
 	print("Question 4")
+
+	precost1 = 0.75
+	precost2 = 1.25
+
+	precost = precost2
+	preopt = np.zeros(opt.shape)
+	bought = np.zeros(opt.shape)
+	after = np.zeros(opt.shape)
+	for i in range(xmax - xmin + 1):
+		tl = np.array([opt[j] - precost * max(0, j - i) for j in range(xmax - xmin + 1)])
+		preopt[i] = max(tl)
+		bought[i] = max(0, np.argmax(tl) - i)
+		after[i] = i + bought[i]
+	plt.plot(preopt)
+	plt.title("Initial Stock vs. Optimal Value with Precost = " + str(precost))
+	plt.show()
+	plt.plot(bought)
+	plt.title("Initial Stock vs. Items bought with Precost = " + str(precost))
+	plt.show()
+	plt.plot(after)
+	plt.title("Initial Stock vs. After Stock with Precost = " + str(precost))
+	plt.show()
+
+	print("Question 5")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
