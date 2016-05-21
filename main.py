@@ -39,7 +39,7 @@ def K2(x):
 	return -x
 
 def K3(V, x):
-	return -V(x)
+	return V[0, x]
 
 def E_L(x, u, n):
 	wl = list(range(0, n+1))
@@ -151,7 +151,7 @@ if __name__ == '__main__':
 	precost1 = 0.75
 	precost2 = 1.25
 
-	precost = precost2
+	precost = 1
 
 	preopt = np.zeros(opt.shape)
 	bought = np.zeros(opt.shape)
@@ -238,7 +238,7 @@ if __name__ == '__main__':
 	pi3 = np.zeros((T, xmax - xmin + 1)) # strategy 
 
 	for i in range(xmax - xmin + 1):
-		V3[T, i] = K3(i)
+		V3[T, i] = K3(V, i)
 
 	for t in range(T - 1, -1, -1):
 		n = nl[t]
